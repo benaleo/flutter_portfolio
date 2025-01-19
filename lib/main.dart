@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+        title: "Benaleo Profile",
         home: LayoutBuilder(
           builder: (context, constraints) {
             if (constraints.maxWidth > 800) {

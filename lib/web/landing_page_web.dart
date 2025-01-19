@@ -1,4 +1,5 @@
 import 'package:benaleo_profile/components.dart';
+import 'package:benaleo_profile/intro.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -60,52 +61,18 @@ class _ProfileCircleAvatarState extends State<ProfileCircleAvatar> {
       children: [
         Container(
           height: heightDevice - 56,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+          child: IntroSection()
+        ),
+        Container(
+          height: heightDevice / 1.5,
+          child:Column(
             children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                      decoration: BoxDecoration(
-                        color: Colors.tealAccent,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20.0),
-                          topRight: Radius.circular(20.0),
-                          bottomRight: Radius.circular(20.0),
-                        ),
-                      ),
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 10.0, vertical: 10.0),
-                      child: SansBold("Hello i'm", 15)),
-                  SansBold(
-                    "Benaleo Bayu Satria",
-                    55.0,
-                  ),
-                  Sans("Java Springboot and Flutter Developer", 30.0),
-                  SizedBox(height: 15.0,),
-                  IconText(Icons.email, 20.0, "benaleobayu@gmail.com"),
-                  SizedBox(height: 10.0,),
-                  IconText(Icons.phone, 20.0, "089 539 246 7724"),
-                  SizedBox(height: 10.0,),
-                  IconText(Icons.pin_drop, 20.0, "Bogor, West Java"),
-                ],
-              ),
-              CircleAvatar(
-                radius: 147.0,
-                backgroundColor: Colors.tealAccent,
-                child: CircleAvatar(
-                  radius: 143.0,
-                  backgroundColor: Colors.black,
-                  child: CircleAvatar(
-                    radius: 140.0,
-                    backgroundImage: AssetImage("assets/avatar.png"),
-                  ),
-                ),
-              ),
+              SansBold("About me", 40.0),
+              SizedBox(height: 10.0,),
+              Sans("Hello i'm Benaleo Bayu Satria, as well you can call me Beno.", 16.0),
+              Sans("i have been completed my study in the field of computer science.", 16.0),
             ],
-          ),
+          )
         ),
       ],
     );
