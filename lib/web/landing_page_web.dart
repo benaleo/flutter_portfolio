@@ -61,8 +61,10 @@ class _ProfileCircleAvatarState extends State<ProfileCircleAvatar> {
         Container(
           height: heightDevice - 56,
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     decoration: BoxDecoration(
@@ -73,6 +75,7 @@ class _ProfileCircleAvatarState extends State<ProfileCircleAvatar> {
                         bottomRight: Radius.circular(20.0),
                       ),
                     ),
+                      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
                       child: Text(
                     "Hello i'm",
                     style: GoogleFonts.oswald(
