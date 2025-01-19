@@ -65,23 +65,31 @@ class _ProfileCircleAvatarState extends State<ProfileCircleAvatar> {
             children: [
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    decoration: BoxDecoration(
-                      color: Colors.tealAccent,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20.0),
-                        topRight: Radius.circular(20.0),
-                        bottomRight: Radius.circular(20.0),
+                      decoration: BoxDecoration(
+                        color: Colors.tealAccent,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20.0),
+                          topRight: Radius.circular(20.0),
+                          bottomRight: Radius.circular(20.0),
+                        ),
                       ),
-                    ),
-                      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-                      child: Text(
-                    "Hello i'm",
-                    style: GoogleFonts.oswald(
-                        color: Colors.black,
-                        backgroundColor: Colors.tealAccent),
-                  ))
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 10.0, vertical: 10.0),
+                      child: SansBold("Hello i'm", 15)),
+                  SansBold(
+                    "Benaleo Bayu Satria",
+                    55.0,
+                  ),
+                  Sans("Java Springboot and Flutter Developer", 30.0),
+                  SizedBox(height: 15.0,),
+                  IconText(Icons.email, 20.0, "benaleobayu@gmail.com"),
+                  SizedBox(height: 10.0,),
+                  IconText(Icons.phone, 20.0, "089 539 246 7724"),
+                  SizedBox(height: 10.0,),
+                  IconText(Icons.pin_drop, 20.0, "Bogor, West Java"),
                 ],
               ),
               CircleAvatar(
