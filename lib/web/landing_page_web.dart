@@ -59,20 +59,51 @@ class _ProfileCircleAvatarState extends State<ProfileCircleAvatar> {
 
     return ListView(
       children: [
-        Container(
-          height: heightDevice - 56,
-          child: IntroSection()
-        ),
+        Container(height: heightDevice - 56, child: IntroSection()),
         Container(
           height: heightDevice / 1.5,
-          child:Column(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SansBold("About me", 40.0),
-              SizedBox(height: 10.0,),
-              Sans("Hello i'm Benaleo Bayu Satria, as well you can call me Beno.", 16.0),
-              Sans("i have been completed my study in the field of computer science.", 16.0),
+              Image.asset(
+                "assets/web.jpg",
+                height: heightDevice / 1.7,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SansBold("About me", 40.0),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Sans(
+                      "Hello i'm Benaleo Bayu Satria, as well you can call me Beno.",
+                      16.0),
+                  Sans(
+                      "i have been completed my study in the field of computer science.",
+                      16.0),
+                  Row(
+                    children: [
+                      ListSkills("Flutter"),
+                      SizedBox(width: 10.0),
+                      ListSkills("Springboot"),
+                      SizedBox(width: 10.0),
+                      ListSkills("Firebase"),
+                      SizedBox(width: 10.0),
+                      ListSkills("Android"),
+                      SizedBox(width: 10.0),
+                      ListSkills("IOS"),
+                      SizedBox(width: 10.0),
+                      ListSkills("Windows"),
+                      SizedBox(width: 10.0),
+                    ],
+                  ),
+                ],
+              ),
             ],
-          )
+          ),
         ),
       ],
     );
