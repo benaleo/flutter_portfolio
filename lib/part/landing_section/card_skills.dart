@@ -10,19 +10,26 @@ class CardSkillsSection extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         SansBold("What I do?", 40),
-        Wrap(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            CardWhatIDoSection(
-              "assets/webL.png",
-              "Web Development",
+            AnimatedCardWeb(
+              imagePath: "assets/webL.png",
+              text: "Web Development",
+              fit: BoxFit.contain,
+              reverse: false,
             ),
-            CardWhatIDoSection(
-              "assets/app.png",
-              "App Development",
+            AnimatedCardWeb(
+              imagePath: "assets/app.png",
+              text: "App Development",
+              fit: BoxFit.contain,
+              reverse: true,
             ),
-            CardWhatIDoSection(
-              "assets/firebase.png",
-              "Back-end Development",
+            AnimatedCardWeb(
+              imagePath: "assets/firebase.png",
+              text: "Back-end Development",
+              fit: BoxFit.contain,
+              reverse: false,
             ),
           ],
         ),
