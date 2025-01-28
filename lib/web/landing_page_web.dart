@@ -1,5 +1,8 @@
+import 'package:benaleo_profile/part/landing_section/about.dart';
 import 'package:benaleo_profile/components.dart';
-import 'package:benaleo_profile/intro.dart';
+import 'package:benaleo_profile/part/landing_section/card_skills.dart';
+import 'package:benaleo_profile/part/landing_section/form.dart';
+import 'package:benaleo_profile/part/landing_section/intro.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -56,55 +59,14 @@ class _ProfileCircleAvatarState extends State<ProfileCircleAvatar> {
   @override
   Widget build(BuildContext context) {
     double heightDevice = MediaQuery.of(context).size.height;
+    double widthDevice = MediaQuery.of(context).size.width;
 
     return ListView(
       children: [
         Container(height: heightDevice - 56, child: IntroSection()),
-        Container(
-          height: heightDevice / 1.5,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset(
-                "assets/web.jpg",
-                height: heightDevice / 1.7,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SansBold("About me", 40.0),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Sans(
-                      "Hello i'm Benaleo Bayu Satria, as well you can call me Beno.",
-                      16.0),
-                  Sans(
-                      "i have been completed my study in the field of computer science.",
-                      16.0),
-                  Row(
-                    children: [
-                      ListSkills("Flutter"),
-                      SizedBox(width: 10.0),
-                      ListSkills("Springboot"),
-                      SizedBox(width: 10.0),
-                      ListSkills("Firebase"),
-                      SizedBox(width: 10.0),
-                      ListSkills("Android"),
-                      SizedBox(width: 10.0),
-                      ListSkills("IOS"),
-                      SizedBox(width: 10.0),
-                      ListSkills("Windows"),
-                      SizedBox(width: 10.0),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
+        Container(height: heightDevice / 1.5, child: AboutSection()),
+        Container(height: heightDevice / 1.5, child: CardSkillsSection()),
+        Container(height: heightDevice, child: HomeFormSection())
       ],
     );
   }
