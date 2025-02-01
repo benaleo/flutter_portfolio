@@ -214,6 +214,25 @@ class ContactSliverAppBar extends StatelessWidget {
   }
 }
 
+class MyCircleAvatar extends StatelessWidget {
+  final String assets;
+  final double? radius;
+  const MyCircleAvatar({super.key, required this.assets, this.radius});
+
+  @override
+  Widget build(BuildContext context) {
+    return CircleAvatar(
+      radius: radius == null ? 117.0 : radius! + 7.0,
+      backgroundColor: Colors.tealAccent,
+      child: CircleAvatar(
+        radius: radius ?? 110.0 ,
+        backgroundColor: Colors.white,
+        backgroundImage: AssetImage(assets),
+      ),
+    );
+  }
+}
+
 class SansBold extends StatelessWidget {
   final text;
   final size;

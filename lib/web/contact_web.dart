@@ -12,7 +12,6 @@ class ContactWeb extends StatefulWidget {
 class _ContactWebState extends State<ContactWeb> {
   @override
   Widget build(BuildContext context) {
-    double heightDevice = MediaQuery.of(context).size.height;
     return Scaffold(
       drawer: DrawerWeb(),
       backgroundColor: Colors.white,

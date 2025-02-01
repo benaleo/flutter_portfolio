@@ -1,5 +1,7 @@
+import 'package:benaleo_profile/mobile/about_mobile.dart';
 import 'package:benaleo_profile/mobile/contact_mobile.dart';
 import 'package:benaleo_profile/mobile/landing_page_mobile.dart';
+import 'package:benaleo_profile/web/about_web.dart';
 import 'package:benaleo_profile/web/contact_web.dart';
 import 'package:benaleo_profile/web/landing_page_web.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +34,19 @@ class Routes {
             },
           ),
         );
+      case '/about':
+        return MaterialPageRoute(
+          builder: (_) => LayoutBuilder(
+            builder: (context, constraits) {
+              if (constraits.maxWidth > 800) {
+                return AboutWeb();
+              } else {
+                return AboutMobile();
+              }
+            },
+          ),
+        );
+
       default:
         return MaterialPageRoute(
           settings: settings,

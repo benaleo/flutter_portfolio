@@ -1,5 +1,8 @@
 import 'package:benaleo_profile/components.dart';
+import 'package:benaleo_profile/part/landing_section/card_skills.dart';
 import 'package:flutter/material.dart';
+
+import '../part/landing_section/about.dart';
 
 class LandingPageMobile extends StatefulWidget {
   const LandingPageMobile({super.key});
@@ -9,24 +12,6 @@ class LandingPageMobile extends StatefulWidget {
 }
 
 class _LandingPageMobileState extends State<LandingPageMobile> {
-  tealContainer(String text) {
-    return Container(
-      padding: EdgeInsets.all(7.0),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.tealAccent,
-          style: BorderStyle.solid,
-          width: 2.0,
-        ),
-        borderRadius: BorderRadius.circular(5.0),
-      ),
-      child: Sans(
-        text,
-        15.0,
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     double widthDevice = MediaQuery.of(context).size.width;
@@ -42,20 +27,15 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
       body: ListView(
         children: [
           // Intro
+          Container(
+            alignment: Alignment.center,
+            child: MyCircleAvatar(assets: "assets/avatar.png"),
+          ),
           Padding(
-            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CircleAvatar(
-                  radius: 117.0,
-                  backgroundColor: Colors.tealAccent,
-                  child: CircleAvatar(
-                    radius: 110.0,
-                    backgroundColor: Colors.white,
-                    backgroundImage: AssetImage("assets/avatar.png"),
-                  ),
-                ),
                 SizedBox(height: 20.0),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,7 +58,7 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
                 ),
                 SizedBox(height: 20.0),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Wrap(
                       direction: Axis.vertical,
@@ -98,65 +78,13 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
 
           // About
           Padding(
-            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SansBold("About Me", 35.0),
-                Sans(
-                    "Hello! I'm Benaleo Bayu Satria, I specialize in springboot development. I stive to ensure astounding performance with state of the art security for Android, iOS and Web.",
-                    15.0,
-                    textAlign: TextAlign.center),
-                SizedBox(height: 20.0),
-                Wrap(
-                  spacing: 7.0,
-                  runSpacing: 7.0,
-                  children: [
-                    tealContainer("Springboot"),
-                    tealContainer("Flutter"),
-                    tealContainer("Android"),
-                    tealContainer("iOS"),
-                  ],
-                )
-              ],
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: AboutSectionMobile(),
           ),
           SizedBox(height: 60.0),
 
           // What i do ?
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SansBold("What i do ?", 35.0),
-              AnimatedCard(
-                imagePath: "assets/webL.png",
-                text: "Web Development",
-                fit: BoxFit.contain,
-                height: 300.0,
-                width: 300.0,
-                isMobile: true,
-              ),
-              AnimatedCard(
-                imagePath: "assets/app.png",
-                text: "App Development",
-                fit: BoxFit.contain,
-                height: 300.0,
-                width: 300.0,
-                isMobile: true,
-                reverse: true,
-              ),
-              AnimatedCard(
-                imagePath: "assets/firebase.png",
-                text: "Back-end Development",
-                fit: BoxFit.contain,
-                height: 300.0,
-                width: 300.0,
-                isMobile: true,
-              ),
-              SizedBox(height: 20.0),
-            ],
-          ),
+          CardSkillSectionMobile(),
           SizedBox(height: 60.0),
 
           // Contact

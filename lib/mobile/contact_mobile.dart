@@ -13,7 +13,6 @@ class ContactMobile extends StatefulWidget {
 class _ContactMobileState extends State<ContactMobile> {
   @override
   Widget build(BuildContext context) {
-    double widthDevice = MediaQuery.of(context).size.width;
     return Scaffold(
       endDrawer: DrawerMobile(),
       body: NestedScrollView(
