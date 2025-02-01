@@ -13,19 +13,19 @@ class CardSkillsSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            AnimatedCardWeb(
+            AnimatedCard(
               imagePath: "assets/webL.png",
               text: "Web Development",
               fit: BoxFit.contain,
               reverse: false,
             ),
-            AnimatedCardWeb(
+            AnimatedCard(
               imagePath: "assets/app.png",
               text: "App Development",
               fit: BoxFit.contain,
               reverse: true,
             ),
-            AnimatedCardWeb(
+            AnimatedCard(
               imagePath: "assets/firebase.png",
               text: "Back-end Development",
               fit: BoxFit.contain,

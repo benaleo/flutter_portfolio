@@ -5,9 +5,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TabsWeb extends StatefulWidget {
-  final title;
+  final String? title;
+  final String? route;
 
-  const TabsWeb(this.title, {super.key});
+  const TabsWeb({super.key, this.route, this.title});
 
   @override
   State<TabsWeb> createState() => _TabsWebState();
@@ -18,37 +19,197 @@ class _TabsWebState extends State<TabsWeb> {
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (_) {
-        setState(() {
-          isSelected = true;
-        });
-        print("Selected");
+    return GestureDetector(
+      onTap: (){
+        Navigator.of(context).pushNamed(widget.route ?? "");
       },
-      onExit: (_) {
-        setState(() {
-          isSelected = false;
-        });
-        print("Exits");
-      },
-      child: AnimatedDefaultTextStyle(
-        duration: const Duration(milliseconds: 100),
-        style: isSelected
-            ? GoogleFonts.oswald(
-                shadows: [
-                    Shadow(
-                      color: Colors.black,
-                      offset: Offset(0, -5),
-                    ),
-                  ],
-                color: Colors.transparent,
-                fontSize: 25.0,
-                decoration: TextDecoration.underline,
-                decorationColor: Colors.tealAccent,
-                decorationThickness: 1)
-            : GoogleFonts.oswald(color: Colors.black, fontSize: 23.0),
-        child: Text(widget.title),
+      child: MouseRegion(
+        onEnter: (_) {
+          setState(() {
+            isSelected = true;
+          });
+          print("Selected");
+        },
+        onExit: (_) {
+          setState(() {
+            isSelected = false;
+          });
+          print("Exits");
+        },
+        child: AnimatedDefaultTextStyle(
+          duration: const Duration(milliseconds: 100),
+          style: isSelected
+              ? GoogleFonts.oswald(
+                  shadows: [
+                      Shadow(
+                        color: Colors.black,
+                        offset: Offset(0, -5),
+                      ),
+                    ],
+                  color: Colors.transparent,
+                  fontSize: 25.0,
+                  decoration: TextDecoration.underline,
+                  decorationColor: Colors.tealAccent,
+                  decorationThickness: 1)
+              : GoogleFonts.oswald(color: Colors.black, fontSize: 23.0),
+          child: Text(widget.title ?? ""),
+        ),
       ),
+    );
+  }
+}
+
+class TabsMobileState extends StatefulWidget {
+  final String text;
+  final String route;
+
+  const TabsMobileState({super.key, required this.text, required this.route});
+
+  @override
+  State<TabsMobileState> createState() => _TabsMobileStateState();
+}
+
+class _TabsMobileStateState extends State<TabsMobileState> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+        elevation: 20.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+        height: 50.0,
+        minWidth: 200.0,
+        color: Colors.black,
+        child: Text(
+          widget.text,
+          style: GoogleFonts.openSans(color: Colors.white, fontSize: 20.0),
+        ),
+        onPressed: () {
+          Navigator.of(context).pushNamed(widget.route);
+        });
+  }
+}
+
+class DrawerWeb extends StatelessWidget {
+  const DrawerWeb({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      backgroundColor: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CircleAvatar(
+            radius: 70.0,
+            backgroundColor: Colors.white,
+            backgroundImage: AssetImage("assets/avatar.png"),
+          ),
+          SizedBox(height: 15.0),
+          SansBold("Benaleo Bayu S.", 25.0),
+          SizedBox(height: 15.0),
+          IconLauncher(assets: "assets/instagram.svg", url: "https://www.instagram.com/benooow", text: "Benooow", size: 20.0),
+          SizedBox(height: 15.0),
+          IconLauncher(assets: "assets/twitter.svg", url: "https://www.twitter.com/benooow", text: "Benooow", size: 20.0),
+          SizedBox(height: 15.0),
+          IconLauncher(assets: "assets/github.svg", url: "https://www.github.com/benaleo", text: "benaleo", size: 20.0),
+        ],
+      ),
+    );
+  }
+}
+
+class DrawerMobile extends StatelessWidget {
+  const DrawerMobile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          DrawerHeader(
+            padding: EdgeInsets.only(bottom: 20.0),
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(width: 2.0, color: Colors.black),
+              ),
+              child: Image.asset("assets/avatar.png"),
+            ),
+          ),
+          TabsMobileState(text: "Home", route: "/"),
+          SizedBox(height: 20.0),
+          TabsMobileState(text: "Works", route: "/works"),
+          SizedBox(height: 20.0),
+          TabsMobileState(text: "Blog", route: "/blog"),
+          SizedBox(height: 20.0),
+          TabsMobileState(text: "About", route: "/about"),
+          SizedBox(height: 20.0),
+          TabsMobileState(text: "Contact", route: "/contact"),
+          SizedBox(height: 40.0),
+          ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: 200.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconLauncherOnly(assets: "assets/instagram.svg", url: "https://www.instagram.com/benooow", size: 30.0),
+                IconLauncherOnly(assets: "assets/twitter.svg", url: "https://www.twitter.com/benooow", size: 30.0),
+                IconLauncherOnly(assets: "assets/github.svg", url: "https://www.github.com/benaleo", size: 30.0),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class HeaderMenuWeb extends StatelessWidget {
+  const HeaderMenuWeb({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Spacer(
+          flex: 3,
+        ),
+        TabsWeb(title : "Home", route: "/"),
+        Spacer(),
+        TabsWeb(title : "Works", route: "/works"),
+        Spacer(),
+        TabsWeb(title : "Blogs", route: "/blog"),
+        Spacer(),
+        TabsWeb(title : "About", route: "/about"),
+        Spacer(),
+        TabsWeb(title : "Contact", route: "/contact"),
+        Spacer(),
+      ],
+    );
+  }
+}
+
+class ContactSliverAppBar extends StatelessWidget {
+  final bool? isNeedMenu;
+  const ContactSliverAppBar({super.key, this.isNeedMenu});
+
+  @override
+  Widget build(BuildContext context) {
+    double heightDevice = MediaQuery.of(context).size.height;
+    return SliverAppBar(
+        expandedHeight: heightDevice / 1.4,
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(size: 25.0, color: Colors.black),
+        flexibleSpace: FlexibleSpaceBar(
+          background: Image.asset(
+            "assets/contact_image.jpg",
+            fit: BoxFit.cover,
+            filterQuality: FilterQuality.high,
+          ),
+        ),
+      title: isNeedMenu! ? HeaderMenuWeb() : null
     );
   }
 }
@@ -71,13 +232,15 @@ class SansBold extends StatelessWidget {
 class Sans extends StatelessWidget {
   final String text;
   final double size;
+  final TextAlign? textAlign;
 
-  const Sans(this.text, this.size, {super.key});
+  const Sans(this.text, this.size, {super.key, this.textAlign});
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: GoogleFonts.openSans(
         fontSize: size,
       ),
@@ -114,6 +277,7 @@ class IconLauncher extends StatelessWidget {
   final String url;
   final double size;
   final String text;
+
   const IconLauncher({super.key, required this.assets, required this.url, required this.text, required this.size});
 
   @override
@@ -138,6 +302,32 @@ class IconLauncher extends StatelessWidget {
   }
 }
 
+class IconLauncherOnly extends StatelessWidget {
+  final String assets;
+  final String url;
+  final double size;
+
+  const IconLauncherOnly({super.key, required this.assets, required this.url, required this.size});
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SvgPicture.asset(
+            assets,
+            width: size,
+            colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn),
+          ),
+        ],
+      ),
+      onPressed: () async {
+        await launchUrl(Uri.parse(url));
+      },
+    );
+  }
+}
 
 class ListSkills extends StatelessWidget {
   final String text;
@@ -163,9 +353,11 @@ class ListSkills extends StatelessWidget {
 class CardWhatIDoSection extends StatelessWidget {
   final String assets;
   final String title;
-  final fit;
+  final bool? fit;
+  final double? height;
+  final double? width;
 
-  const CardWhatIDoSection(this.assets, this.title, {super.key, this.fit});
+  const CardWhatIDoSection(this.assets, this.title, {super.key, this.fit, this.height, this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -182,8 +374,8 @@ class CardWhatIDoSection extends StatelessWidget {
           children: [
             Image.asset(
               assets,
-              height: 200,
-              width: 200,
+              height: height ?? 200,
+              width: width ?? 200,
             ),
             SizedBox(height: 10.0),
             SansBold(title, 15.0)
@@ -195,22 +387,22 @@ class CardWhatIDoSection extends StatelessWidget {
 }
 
 class TextForm extends StatelessWidget {
-  final String heading;
-  final double width;
+  final String label;
+  final double containerWidth;
   final String hintText;
-  final maxLines;
+  final int? maxLines;
 
-  const TextForm({super.key, required this.heading, required this.width, required this.hintText, this.maxLines});
+  const TextForm({super.key, required this.label, required this.containerWidth, required this.hintText, this.maxLines});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Sans(heading, 15),
+        Sans(label, 15),
         SizedBox(height: 5),
         SizedBox(
-          width: width,
+          width: containerWidth,
           child: TextFormField(
             inputFormatters: [LengthLimitingTextInputFormatter(50), FilteringTextInputFormatter(RegExp("[a-zA-Z ]"), allow: true)],
             maxLines: maxLines,
@@ -241,6 +433,7 @@ class TextForm extends StatelessWidget {
               if (RegExp("\\bbapuk\\b", caseSensitive: false).hasMatch(text.toString())) {
                 return "Please don't use bapuk";
               }
+              return null;
             },
             autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
@@ -250,28 +443,45 @@ class TextForm extends StatelessWidget {
   }
 }
 
-class AnimatedCardWeb extends StatefulWidget {
+class AnimatedCard extends StatefulWidget {
   final imagePath;
-  final text;
-  final fit;
-  final reverse;
+  final String? text;
+  final BoxFit? fit;
+  final bool? reverse;
+  final width;
+  final height;
+  final bool? isMobile;
 
-  const AnimatedCardWeb({super.key, this.imagePath, this.text, this.fit, this.reverse});
+  const AnimatedCard({super.key, this.imagePath, this.text, this.fit, this.reverse, this.width, this.height, this.isMobile});
 
   @override
-  State<AnimatedCardWeb> createState() => _AnimatedCardWebState();
+  State<AnimatedCard> createState() => _AnimatedCardState();
 }
 
-class _AnimatedCardWebState extends State<AnimatedCardWeb> with SingleTickerProviderStateMixin {
+class _AnimatedCardState extends State<AnimatedCard> with SingleTickerProviderStateMixin {
   late AnimationController _controller = AnimationController(
     vsync: this,
     duration: const Duration(seconds: 4),
   )..repeat(reverse: true);
 
+
   late Animation<Offset> _animation = Tween(
-    begin: widget.reverse == true ? Offset(0, 0.08) : Offset.zero,
-    end: widget.reverse == true ? Offset.zero : Offset(0, 0.08),
+    begin: widget.isMobile == true
+        ? widget.reverse == true
+        ? Offset(0.08, 0) // Jika isMobile true dan reverse true, mulai dari kanan
+        : Offset(-0.08, 0) // Jika isMobile true dan reverse false, mulai dari kiri
+        : widget.reverse == true
+        ? Offset(0, 0.08) // Jika isMobile false dan reverse true, mulai dari bawah
+        : Offset.zero, // Jika isMobile false dan reverse false, mulai dari posisi awal
+    end: widget.isMobile == true
+        ? widget.reverse == true
+        ? Offset(-0.08, 0) // Jika isMobile true dan reverse true, bergerak ke kiri
+        : Offset(0.08, 0) // Jika isMobile true dan reverse false, bergerak ke kanan
+        : widget.reverse == true
+        ? Offset.zero // Jika isMobile false dan reverse true, bergerak ke posisi awal
+        : Offset(0, 0.08), // Jika isMobile false dan reverse false, bergerak ke bawah
   ).animate(_controller);
+
 
   @override
   void dispose() {
@@ -281,7 +491,8 @@ class _AnimatedCardWebState extends State<AnimatedCardWeb> with SingleTickerProv
 
   @override
   Widget build(BuildContext context) {
-    return SlideTransition(position: _animation,
+    return SlideTransition(
+      position: _animation,
       child: Card(
         elevation: 30.0,
         shadowColor: Colors.tealAccent,
@@ -295,8 +506,8 @@ class _AnimatedCardWebState extends State<AnimatedCardWeb> with SingleTickerProv
             children: [
               Image.asset(
                 widget.imagePath,
-                height: 200,
-                width: 200,
+                height: widget.height ?? 200,
+                width: widget.width ?? 200,
                 fit: widget.fit == null ? null : widget.fit,
               ),
               SizedBox(height: 10.0),
