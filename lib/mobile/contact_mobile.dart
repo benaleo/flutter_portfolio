@@ -17,7 +17,7 @@ class _ContactMobileState extends State<ContactMobile> {
       endDrawer: DrawerMobile(),
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[ContactSliverAppBar(isNeedMenu:false)];
+          return <Widget>[MobileSliverAppBar(isNeedMenu:false)];
         },
         body: SingleChildScrollView(
           child: ContactSectionMobile(),

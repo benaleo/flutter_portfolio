@@ -18,7 +18,7 @@ class _ContactWebState extends State<ContactWeb> {
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
-            ContactSliverAppBar(isNeedMenu: true,)
+            MobileSliverAppBar(isNeedMenu: true,)
           ];
         },
         body: SingleChildScrollView(

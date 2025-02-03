@@ -20,7 +20,7 @@ class _TabsWebState extends State<TabsWeb> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Navigator.of(context).pushNamed(widget.route ?? "");
       },
       child: MouseRegion(
@@ -176,47 +176,49 @@ class HeaderMenuWeb extends StatelessWidget {
         Spacer(
           flex: 3,
         ),
-        TabsWeb(title : "Home", route: "/"),
+        TabsWeb(title: "Home", route: "/"),
         Spacer(),
-        TabsWeb(title : "Works", route: "/works"),
+        TabsWeb(title: "Works", route: "/works"),
         Spacer(),
-        TabsWeb(title : "Blogs", route: "/blog"),
+        TabsWeb(title: "Blogs", route: "/blog"),
         Spacer(),
-        TabsWeb(title : "About", route: "/about"),
+        TabsWeb(title: "About", route: "/about"),
         Spacer(),
-        TabsWeb(title : "Contact", route: "/contact"),
+        TabsWeb(title: "Contact", route: "/contact"),
         Spacer(),
       ],
     );
   }
 }
 
-class ContactSliverAppBar extends StatelessWidget {
+class MobileSliverAppBar extends StatelessWidget {
   final bool? isNeedMenu;
-  const ContactSliverAppBar({super.key, this.isNeedMenu});
+  final String? assets;
+  final double? heightDevice;
+
+  const MobileSliverAppBar({super.key, this.isNeedMenu, this.assets, this.heightDevice});
 
   @override
   Widget build(BuildContext context) {
-    double heightDevice = MediaQuery.of(context).size.height;
     return SliverAppBar(
-        expandedHeight: heightDevice / 1.4,
+        expandedHeight: heightDevice ?? heightDevice! / 1.4,
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(size: 25.0, color: Colors.black),
         flexibleSpace: FlexibleSpaceBar(
           background: Image.asset(
-            "assets/contact_image.jpg",
+            assets ?? "assets/contact_image.jpg",
             fit: BoxFit.cover,
             filterQuality: FilterQuality.high,
           ),
         ),
-      title: isNeedMenu! ? HeaderMenuWeb() : null
-    );
+        title: isNeedMenu! ? HeaderMenuWeb() : null);
   }
 }
 
 class MyCircleAvatar extends StatelessWidget {
   final String assets;
   final double? radius;
+
   const MyCircleAvatar({super.key, required this.assets, this.radius});
 
   @override
@@ -225,7 +227,7 @@ class MyCircleAvatar extends StatelessWidget {
       radius: radius == null ? 117.0 : radius! + 7.0,
       backgroundColor: Colors.tealAccent,
       child: CircleAvatar(
-        radius: radius ?? 110.0 ,
+        radius: radius ?? 110.0,
         backgroundColor: Colors.white,
         backgroundImage: AssetImage(assets),
       ),
@@ -262,6 +264,27 @@ class Sans extends StatelessWidget {
       textAlign: textAlign,
       style: GoogleFonts.openSans(
         fontSize: size,
+      ),
+    );
+  }
+}
+
+class AbelCustom extends StatelessWidget {
+  final String text;
+  final double size;
+  final color;
+  final fontWeight;
+
+  const AbelCustom({super.key, required this.text, required this.size, this.color, this.fontWeight});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: GoogleFonts.abel(
+        fontSize: size,
+        color: color ?? Colors.black,
+        fontWeight: fontWeight ?? FontWeight.normal,
       ),
     );
   }
@@ -483,24 +506,22 @@ class _AnimatedCardState extends State<AnimatedCard> with SingleTickerProviderSt
     duration: const Duration(seconds: 4),
   )..repeat(reverse: true);
 
-
   late Animation<Offset> _animation = Tween(
     begin: widget.isMobile == true
         ? widget.reverse == true
-        ? Offset(0.08, 0) // Jika isMobile true dan reverse true, mulai dari kanan
-        : Offset(-0.08, 0) // Jika isMobile true dan reverse false, mulai dari kiri
+            ? Offset(0.08, 0) // Jika isMobile true dan reverse true, mulai dari kanan
+            : Offset(-0.08, 0) // Jika isMobile true dan reverse false, mulai dari kiri
         : widget.reverse == true
-        ? Offset(0, 0.08) // Jika isMobile false dan reverse true, mulai dari bawah
-        : Offset.zero, // Jika isMobile false dan reverse false, mulai dari posisi awal
+            ? Offset(0, 0.08) // Jika isMobile false dan reverse true, mulai dari bawah
+            : Offset.zero, // Jika isMobile false dan reverse false, mulai dari posisi awal
     end: widget.isMobile == true
         ? widget.reverse == true
-        ? Offset(-0.08, 0) // Jika isMobile true dan reverse true, bergerak ke kiri
-        : Offset(0.08, 0) // Jika isMobile true dan reverse false, bergerak ke kanan
+            ? Offset(-0.08, 0) // Jika isMobile true dan reverse true, bergerak ke kiri
+            : Offset(0.08, 0) // Jika isMobile true dan reverse false, bergerak ke kanan
         : widget.reverse == true
-        ? Offset.zero // Jika isMobile false dan reverse true, bergerak ke posisi awal
-        : Offset(0, 0.08), // Jika isMobile false dan reverse false, bergerak ke bawah
+            ? Offset.zero // Jika isMobile false dan reverse true, bergerak ke posisi awal
+            : Offset(0, 0.08), // Jika isMobile false dan reverse false, bergerak ke bawah
   ).animate(_controller);
-
 
   @override
   void dispose() {
