@@ -52,8 +52,8 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
                       padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                       child: SansBold("Hello, i'm", 15.0),
                     ),
-                    SansBold("Benaleo Bayu Satria", 35.0),
-                    Sans("Springboot Developer", 30.0)
+                    SansBold("Beno Dev", 35.0),
+                    Sans("Fullstack Developer", 30.0)
                   ],
                 ),
                 SizedBox(height: 20.0),

@@ -90,7 +90,7 @@ class AboutDescriptionSection extends StatelessWidget {
         SizedBox(
           height: 10.0,
         ),
-        Sans("Hello i'm Benaleo Bayu Satria, as well you can call me Beno.", 16.0),
+        Sans("Hello i'm Beno Dev, as well you can call me Beno.", 16.0),
         Sans("i have been completed my study in the field of computer science.", 16.0),
         Row(
           children: [
@@ -129,7 +129,7 @@ class _AboutSectionMobileState extends State<AboutSectionMobile> {
       children: [
         SansBold("About Me", 35.0),
         Sans(
-            "Hello! I'm Benaleo Bayu Satria, I specialize in springboot development. I stive to ensure astounding performance with state of the art security for Android, iOS and Web.",
+            "Hello! I'm Beno Dev, I specialize in fullstack development. I stive to ensure astounding performance with state of the art security for Android, iOS and Web.",
             15.0,
             textAlign: TextAlign.center),
         SizedBox(height: 20.0),
